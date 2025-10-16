@@ -1,13 +1,22 @@
-import { Field,ObjectType } from "@nestjs/graphql";
+import { Field, ObjectType, Int } from '@nestjs/graphql';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-  @ObjectType()
+@ObjectType()
+@Entity() 
 export class Task {
-    @Field(type => Number)
-    id: number;
-    @Field()
-    title: string;
-    @Field()
-    description: string;
-    @Field()
-    status: 'pending' | 'in-progress' | 'completed';
+  @Field(() => Int)
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Field()
+  @Column()
+  title: string;
+
+  @Field()
+  @Column()
+  description: string;
+
+  @Field()
+  @Column({ type: 'enum', enum: ['pending', 'in-progress', 'completed'], default: 'pending' })
+  status: 'pending' | 'in-progress' | 'completed';
 }

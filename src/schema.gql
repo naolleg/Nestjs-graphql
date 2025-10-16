@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 type Task {
-  id: Float!
+  id: Int!
   title: String!
   description: String!
   status: String!
@@ -11,4 +11,24 @@ type Task {
 
 type Query {
   tasks: [Task!]!
+  task(id: Int!): Task!
+}
+
+type Mutation {
+  createTask(createTaskInput: CreateTaskInput!): Task!
+  updateTask(updateTaskInput: UpdateTaskInput!): Task!
+  removeTask(id: Int!): Boolean!
+}
+
+input CreateTaskInput {
+  title: String!
+  description: String!
+  status: String
+}
+
+input UpdateTaskInput {
+  title: String
+  description: String
+  status: String
+  id: Int!
 }
