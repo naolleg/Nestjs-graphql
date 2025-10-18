@@ -1,7 +1,7 @@
 # 📝 NestJS GraphQL Task API
 
 A **Task management API** built with **NestJS**, **GraphQL**, and **PostgreSQL** using **TypeORM**.  
-Supports full **CRUD operations** for tasks: create, read, update, delete.
+Supports full **CRUD operations** for tasks and includes **user authentication** with JWT.
 
 ---
 
@@ -19,18 +19,22 @@ Supports full **CRUD operations** for tasks: create, read, update, delete.
   - `title` (string)  
   - `description` (string)  
   - `status` (`pending | in-progress | completed`)
+- User Authentication:
+  - `signup(email, password, name)` → create a new user
+  - `login(email, password)` → get JWT token and user info
+- JWT-based authentication ready for protecting endpoints
+- Playground queries for testing tasks and auth
 
 ---
 
 ## ⚙️ Installation & Setup
 
-Follow these steps to get the project running locally:
-
 ### 1️⃣ Clone the Repository
 
 
-git clone <repo-url>
-cd <repo-folder>
+git clone https://github.com/naolleg/Nestjs-graphql.git
+cd Nestjs-graphql
+
 
 synchronize: true automatically generates tables — for production, use migrations.
 ### 2️⃣ Install Dependencies
