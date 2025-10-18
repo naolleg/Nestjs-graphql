@@ -1,5 +1,6 @@
 import { Field, ObjectType, Int } from '@nestjs/graphql';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { IsAlpha } from 'class-validator';
 
 @ObjectType()
 @Entity() 
@@ -8,6 +9,7 @@ export class Task {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @IsAlpha()
   @Field()
   @Column()
   title: string;
