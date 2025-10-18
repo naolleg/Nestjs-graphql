@@ -1,9 +1,10 @@
 import { Field, ObjectType, Int } from '@nestjs/graphql';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { IsAlpha } from 'class-validator';
+import { User } from '../user/user.entity';
 
 @ObjectType()
-@Entity() 
+@Entity()
 export class Task {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
@@ -21,4 +22,7 @@ export class Task {
   @Field()
   @Column({ type: 'enum', enum: ['pending', 'in-progress', 'completed'], default: 'pending' })
   status: 'pending' | 'in-progress' | 'completed';
+
+  @ManyToOne(() => User, user => user.tasks, { onDelete: 'CASCADE' })
+  user: User;
 }

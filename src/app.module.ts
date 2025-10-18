@@ -7,6 +7,8 @@ import { TaskModule } from './task/task.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Task } from './task/task.entity';
+import { UsersModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,7 +22,7 @@ import { Task } from './task/task.entity';
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: 'postgresql://neondb_owner:npg_yQi7TKV5PIAc@ep-wispy-pond-adwr4jd7-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require',
-      entities: [Task],
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
       
       synchronize: true, 
       ssl: {
@@ -28,8 +30,9 @@ import { Task } from './task/task.entity';
       },
     }),
 
-    
+    UsersModule,
     TaskModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
