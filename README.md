@@ -40,15 +40,7 @@ npm install
 
 Open app.module.ts (or create a .env file for environment variables) and update the database connection:
 
-TypeOrmModule.forRoot({
-  type: 'postgres',
-  url: 'postgresql://neondb_owner:npg_yQi7TKV5PIAc@ep-wispy-pond-adwr4jd7-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require',
-  entities: [Task],
-  synchronize: true, // auto-creates tables; disable in production
-  ssl: {
-    rejectUnauthorized: false, // required for some hosted DBs like Neon
-  },
-}),
+
 
 ### 4️⃣ Run the Application
 
