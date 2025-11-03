@@ -12,7 +12,10 @@ export class TaskService {
     private readonly taskRepository: Repository<Task>,
   ) {}
 
-  async getTasks(): Promise<Task[]> {
+  async getTasks(userId?: number): Promise<Task[]> {
+    if (userId) {
+      return this.taskRepository.find({ where: { userId } });
+    }
     return this.taskRepository.find();
   }
 
@@ -33,9 +36,8 @@ export class TaskService {
     return this.taskRepository.save(task);
   }
 
-async removeTask(id: number): Promise<boolean> {
-  const result = await this.taskRepository.delete(id);
-  return !!(result.affected && result.affected > 0);
-}
-
+  async removeTask(id: number): Promise<boolean> {
+    const result = await this.taskRepository.delete(id);
+    return !!(result.affected && result.affected > 0);
+  }
 }

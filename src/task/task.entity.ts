@@ -23,6 +23,10 @@ export class Task {
   @Column({ type: 'enum', enum: ['pending', 'in-progress', 'completed'], default: 'pending' })
   status: 'pending' | 'in-progress' | 'completed';
 
+  @Field(() => Int)
+  @Column()
+  userId: number;
+
   @ManyToOne(() => User, user => user.tasks, { onDelete: 'CASCADE' })
   user: User;
 }
